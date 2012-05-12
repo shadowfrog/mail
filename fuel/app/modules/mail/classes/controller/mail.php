@@ -37,6 +37,7 @@ class Controller_Mail extends \Backend\Common {
 		));
 		
 		$email->set_config('host', $mailbox->outbox);
+		$email->set_config('port', 25);
 		$email->set_config('username', $mailbox->box_account);
 		$email->set_config('password', $mailbox->box_password);
 		
