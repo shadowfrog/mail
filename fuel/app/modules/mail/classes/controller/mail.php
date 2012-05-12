@@ -26,20 +26,9 @@ class Controller_Mail extends \Backend\Common {
 	 * send an existing email
 	 */
 	public function action_send()
-	{
-		// get the mailbox
-		$mailbox = Model_Mailbox::find(1);
-		//\Debug::dump($mailbox->outbox);
-		
+	{		
 		// Create an instance
-		$email = \Email::forge(array(
-		    'driver' => 'smtp',
-		));
-		
-		$email->set_config('host', $mailbox->outbox);
-		$email->set_config('port', 25);
-		$email->set_config('username', $mailbox->box_account);
-		$email->set_config('password', $mailbox->box_password);
+		$email = \Email::forge();
 		
 		// Set the from address
 		$email->from('test@mailer.dev', 'I am a Mailer');
