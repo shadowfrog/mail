@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{{ title }}</title>
+	</head>
+	<body>
+		<header>
+			{% for item in sections.user %}
+				{{ item }}
+			{% endfor %}
+		</header>
+		<aside id="left">
+			{% for item in sections.left %}
+				{{ item }}
+			{% endfor %}
+		</aside>
+		<section id="main">
+			{% for item in sections.main %}
+				{{ item }}
+			{% endfor %}
+		</section>
+		<aside id="right">
+			{% for item in sections.right %}
+				{{ item }}
+			{% endfor %}
+		</aside>
+	</body>
+</html>

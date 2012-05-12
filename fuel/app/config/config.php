@@ -34,14 +34,14 @@ return array(
 	 *
 	 * Set this to an empty string if no suffix is used
 	 */
-	'url_suffix'  => '',
+	'url_suffix'  => '.html',
 
 	/**
 	 * index_file - The name of the main bootstrap file.
 	 *
 	 * Set this to false or remove if you using mod_rewrite.
 	 */
-	'index_file'  => 'index.php',
+	'index_file'  => false,
 
 	'profiling'  => false,
 
@@ -189,7 +189,7 @@ return array(
 	 *      array(APPPATH.'modules'.DS)
 	 */
 	'module_paths' => array(
-		//APPPATH.'modules'.DS
+		APPPATH.'modules'.DS
 	),
 
 
@@ -210,7 +210,8 @@ return array(
 		 * );
 		 */
 		'packages'  => array(
-			//'orm',
+			'email',
+			'parser',
 		),
 
 		/**
@@ -221,7 +222,9 @@ return array(
 		 *
 		 * A path must be set in module_paths for this to work.
 		 */
-		'modules'  => array(),
+		'modules'  => array(
+			'backend',
+		),
 
 		/**
 		 * Classes to autoload & initialize even when not used

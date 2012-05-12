@@ -50,7 +50,7 @@ catch (HttpNotFoundException $e)
 	}
 }
 
-// This will add the execution time and memory usage to the output.
+// This will add the execution time and memory usage to the output.hello/joe
 // Comment this out if you don't use it.
 $bm = Profiler::app_total();
 $response->body(
