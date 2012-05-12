@@ -27,8 +27,18 @@ class Controller_Mail extends \Backend\Common {
 	 */
 	public function action_send()
 	{
+		// get the mailbox
+		$mailbox = Model_Mailbox::find(1);
+		//\Debug::dump($mailbox->outbox);
+		
 		// Create an instance
-		$email = Email::forge();
+		$email = \Email::forge(array(
+		    'driver' => 'smtp',
+		));
+		
+		$email->set_config('host', $mailbox->outbox);
+		$email->set_config('username', $mailbox->box_account);
+		$email->set_config('password', $mailbox->box_password);
 		
 		// Set the from address
 		$email->from('test@mailer.dev', 'I am a Mailer');
@@ -66,5 +76,9 @@ class Controller_Mail extends \Backend\Common {
 		}
 	}
 	
+	public function action_test()
+	{
+		$mailbox = Model_Mailbox::find(1);
+	}
 	
 }

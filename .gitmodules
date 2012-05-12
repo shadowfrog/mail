@@ -22,3 +22,6 @@
 [submodule "fuel/app/vendor/twig"]
 	path = fuel/app/vendor/twig
 	url = https://github.com/fabpot/Twig.git
+[submodule "fuel/packages/sentry"]
+	path = fuel/packages/sentry
+	url = https://github.com/cartalyst/sentry.git

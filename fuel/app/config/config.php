@@ -212,6 +212,7 @@ return array(
 		'packages'  => array(
 			'email',
 			'parser',
+			'orm'
 		),
 
 		/**
