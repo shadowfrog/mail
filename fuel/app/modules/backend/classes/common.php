@@ -53,12 +53,7 @@ abstract class Common extends \Common {
 					    // log the user in		
 					    if (Sentry::login($email, $password, Input::post('remember_login', false)))
 					    {
-					        // the user is now logged in - do your own logic
-					        if(static::check_permission())
-							{
-								// the user has permissions
-								return true;
-							}
+					    	Response::redirect('backend/dashboard/index');
 					    }
 					    else
 					    {
@@ -84,6 +79,23 @@ abstract class Common extends \Common {
 			{
 				// we are neighter logged in nor on login page
 				Response::redirect('auth/login');
+			}
+		}
+		else
+		{
+			// already logged in
+			$this->user = $this->set_user(Sentry::user);
+							
+	        // the user is now logged in - do your own logic
+	        if(static::check_permission())
+			{
+				// the user has permissions
+				return true;
+			}
+			else
+			{
+				// no he doesn't have permission to access this
+				die('You\'re not allowed');
 			}
 		}
 	}

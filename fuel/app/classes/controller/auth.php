@@ -13,6 +13,18 @@ class Controller_Auth extends \Backend\Common {
 	}
 	
 	/**
+	 * Logout
+	 */
+	public function logout()
+	{
+		// log the user out
+		Sentry::logout();
+		
+		// than redirect to login page
+		Response::redirect('auth/login');
+	}
+	
+	/**
 	 * create an user without validation
 	 */
 	public function action_create()

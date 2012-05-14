@@ -17,6 +17,11 @@ abstract class Common extends Controller_Hybrid {
 	 */
 	protected $_sections = array();
 	
+	/**
+	 * current user
+	 */
+	private static $user = false;
+	
 	public function before()
 	{
 		parent::before();
@@ -28,5 +33,22 @@ abstract class Common extends Controller_Hybrid {
 		$this->template->set('sections', $this->_sections);
 		
 		return parent::after($response);
+	}
+	
+	/**
+	 * set the current user
+	 * @param Object	| The user Object
+	 */
+	protected static function set_user($user)
+	{
+		static::$user = $user;
+	}
+	
+	/**
+	 * get the current user
+	 */
+	public static function get_user()
+	{
+		return static::$user;
 	}
 }
