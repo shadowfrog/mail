@@ -2,14 +2,14 @@
 
 Package::load('sentry');
 
-class Controller_Auth extends Common {
+class Controller_Auth extends \Backend\Common {
 	
 	/**
 	 * Login
 	 */
 	public function action_login()
 	{
-		$this->template->set('title', 'Login');
+		$this->_title = 'Login';
 	}
 	
 	/**

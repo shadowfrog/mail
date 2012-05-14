@@ -20,8 +20,6 @@ abstract class Common extends Controller_Hybrid {
 	public function before()
 	{
 		parent::before();
-		
-		// Check login credentials
 	}
 	
 	public function after($response)
