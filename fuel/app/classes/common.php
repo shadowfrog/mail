@@ -10,7 +10,7 @@ abstract class Common extends Controller_Hybrid {
 	/**
 	 * html title of the page
 	 */
-	protected $_title = 'Mail';
+	private $title = 'Mail';
 	
 	/**
 	 * all sections
@@ -41,7 +41,7 @@ abstract class Common extends Controller_Hybrid {
 	 */
 	protected static function set_user($user)
 	{
-		static::$user = $user;
+		self::$user = $user;
 	}
 	
 	/**
@@ -49,6 +49,13 @@ abstract class Common extends Controller_Hybrid {
 	 */
 	public static function get_user()
 	{
-		return static::$user;
+		return self::$user;
+	
+	/**
+	 * set the page title
+	 */
+	protected static function set_title($title = 'Mail')
+	{
+		self::$title = $title;
 	}
 }
