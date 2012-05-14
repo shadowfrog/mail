@@ -1,6 +1,11 @@
 <IfModule mod_rewrite.c>
     RewriteEngine on
 
+	# Don't rewrite favicon and robots file
+	RewriteCond %{REQUEST_URI} !=/favicon.ico
+	RewriteCond %{REQUEST_URI} !=/robots.txt
+	
+	# Don't rewrite existing directiories and files
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
 
