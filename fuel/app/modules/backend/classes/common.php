@@ -22,6 +22,7 @@ abstract class Common extends \Common {
 		if($this->check_login())
 		{
 			// render navigation etc...
+			$this->add_to_section('left', View::forge('backend/navigation.twig'), 'navigation');
 		}
 		else
 		{

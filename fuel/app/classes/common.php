@@ -38,7 +38,7 @@ abstract class Common extends Controller_Hybrid {
 	public function after($response)
 	{
 		$this->template->set('css', $this->css(), false);
-		$this->template->set('js', $this->css(), false);
+		$this->template->set('js', $this->js(), false);
 		$this->template->set('title', self::$title);
 		$this->template->set('sections', self::$sections, false);
 		
@@ -50,7 +50,10 @@ abstract class Common extends Controller_Hybrid {
 	 */
 	public function css()
 	{
-		$css = array('normalize.css');
+		$css = array(
+			'normalize.css',
+			'chosen.css'
+		);
 		$this->theme->asset->css($css, array(), 'css');
 		
 		return $this->theme->asset->render('css');
@@ -61,7 +64,11 @@ abstract class Common extends Controller_Hybrid {
 	 */
 	public function js()
 	{
-		$js = array();
+		$js = array(
+			'https://ajax.googleapis.com/ajax/libs/mootools/1.4.5/mootools.js',
+			'mootools-more.js',
+			'chosen.js',
+		);
 		$this->theme->asset->js($js, array(), 'js');
 		
 		return $this->theme->asset->render('js');

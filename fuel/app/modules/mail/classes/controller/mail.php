@@ -3,6 +3,8 @@
 namespace Mail;
 
 use \Email;
+use \View;
+use \Input;
 
 class Controller_Mail extends \Backend\Common {
 	
@@ -11,7 +13,7 @@ class Controller_Mail extends \Backend\Common {
 	 */
 	public function action_create()
 	{
-		
+		$this->add_to_section('main', View::forge('form/mail/create.twig'), 'mail_create');
 	}
 	
 	/**
@@ -26,29 +28,28 @@ class Controller_Mail extends \Backend\Common {
 	 * send an existing email
 	 */
 	public function action_send()
-	{		
+	{
+		$from = Input::post('from');
+		$to = Input::post('to');
+		$cc = Input::post('cc');
+		$bcc = Input::post('bcc');
+		$subject = Input::post('subject');
+		$text = Input::post('subject');
+			
 		// Create an instance
-		$email = \Email::forge();
+		$email = Email::forge();
 		
 		// Set the from address
-		$email->from('test@mailer.dev', 'I am a Mailer');
+		$email->from($from);
 		
 		// Set the to address
-		$email->to('sebastian.wohlfarth@gmail.com', 'Sebastian Wohlfahrt');
+		$email->to($to);
 		
 		// Set a subject
-		$email->subject('Eine Test-E-Mail');
-		
-		// Set multiple to addresses
-		/*
-		$email->to(array(
-		    'example@mail.com',
-		    'another@mail.com' => 'With a Name',
-		);
-		*/
+		$email->subject($subject);
 		
 		// And set the body.
-		$email->body('This is my message');
+		$email->body($text);
 		
 		try
 		{
@@ -57,12 +58,10 @@ class Controller_Mail extends \Backend\Common {
 		catch(\EmailValidationFailedException $e)
 		{
 		    // The validation failed
-		    \Debug::dump($e);
 		}
 		catch(\EmailSendingFailedException $e)
 		{
 		    // The driver could not send the email
-		    \Debug::dump($e);
 		}
 	}
 	

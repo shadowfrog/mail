@@ -1,0 +1,38 @@
+<form action="/mail/mail/send.html" method="post">
+<ul>
+	<li>
+		<select name="from" data-placeholder="From" class="chzn-select">
+			<option value="paddy.heller@gmail.com">Patrick Heller</option>
+			<option value="sebastian.wohlfarth@gmail.com">Sebastian Wohlfarth</option>
+		</select>
+	</li>
+	<li>
+		<select name="to[]" data-placeholder="To" multiple="multiple" data-placeholder="To" class="chzn-select">
+			<option value=""></option>
+			<option value="paddy.heller@gmail.com">Patrick Heller</option>
+			<option value="sebastian.wohlfarth@gmail.com">Sebastian Wohlfarth</option>
+		</select>
+	</li>
+	<li>
+		<select name="cc[]" data-placeholder="Cc" multiple="multiple" class="chzn-select">
+			<option value=""></option>
+			<option value="paddy.heller@gmail.com">Patrick Heller</option>
+			<option value="sebastian.wohlfarth@gmail.com">Sebastian Wohlfarth</option>
+		</select>
+	</li>
+	<li>
+		<select name="bcc[]" data-placeholder="Bcc" multiple="multiple" class="chzn-select">
+			<option value=""></option>
+			<option value="paddy.heller@gmail.com">Patrick Heller</option>
+			<option value="sebastian.wohlfarth@gmail.com">Sebastian Wohlfarth</option>
+		</select>
+	</li>
+	<li><input type="text" name="subject" placeholder="Betreff"></li>
+	<li>
+		<textarea type="text" name="text" placeholder="Ihre Nachricht"></textarea>
+	</li>
+	<li>
+		<input type="submit" value="E-Mail abschicken">
+	</li>
+</ul>
+</form>
