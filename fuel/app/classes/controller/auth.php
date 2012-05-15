@@ -15,7 +15,7 @@ class Controller_Auth extends \Backend\Common {
 	/**
 	 * Logout
 	 */
-	public function logout()
+	public function action_logout()
 	{
 		// log the user out
 		Sentry::logout();
@@ -27,24 +27,28 @@ class Controller_Auth extends \Backend\Common {
 	/**
 	 * create an user without validation
 	 */
-	public function action_create()
+	public function action_register()
 	{
 		if ($email = Input::post('email')
 			and $password = Input::post('password'))
 		{
 			try
 			{
-			    // create the user - no activation required
-			    $vars = array(
-			    	'email'    => $email,
+			    // create the user
+			    $user = Sentry::user()->create(array( //TODO: replace throught register
+			        'email'    => $email,
 			    	'password' => $password,
-			    );
+			    	'metadata' => array(
+			    		'first_name' => Input::post('firstname'),
+			    		'last_name'  => Input::post('lastname'),
+			    		// add any other fields you want in your metadata here. ( must add to db table first )
+			    	)
+			    ));
 			
-			    $user_id = Sentry::user()->create($vars);
-			
-			    if ($user_id)
+			    if ($user)
 			    {
-			        // the user was created - send email notifying user account was created
+			        // the user was created			
+			        // send email with link to activate.
 			    }
 			    else
 			    {
@@ -53,12 +57,8 @@ class Controller_Auth extends \Backend\Common {
 			}
 			catch (SentryUserException $e)
 			{
-			    $errors = $e->getMessage(); // catch errors such as user exists or bad fields
+			     $errors = $e->getMessage(); // catch errors such as user exists or bad fields
 			}
-		}
-		else
-		{
-			$this->template->set('register', \View::forge('form/register.twig'));
 		}
 	}
 	

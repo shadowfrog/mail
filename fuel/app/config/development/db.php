@@ -9,10 +9,10 @@ return array(
     	'connection'     => array(
 	        'hostname'       => 'localhost',
 	        'port'           => '3306',
-	        'database'       => 'mailer',
+	        'database'       => 'dev_mailer',
 	        'username'       => 'root',
-	        'password'       => '',
-	        'persistent'     => false,
+	        'password'       => 'Swordfishb0507f0830430',
+	        'persistent'     => true,
 	    ),
 	),
 );

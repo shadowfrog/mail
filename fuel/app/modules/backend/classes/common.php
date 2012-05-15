@@ -21,12 +21,12 @@ abstract class Common extends \Common {
 		// check if user is logged in
 		if($this->check_login())
 		{
-			$this->_sections = Config::load('sections');
+			// render navigation etc...
 		}
 		else
 		{
-			$this->_sections['main']['login'] = View::forge('form/login.twig');
-			$this->_sections['main']['register'] = View::forge('form/register.twig');
+			$this->add_to_section('main', View::forge('form/login.twig'), 'login');
+			$this->add_to_section('main', View::forge('form/register.twig'), 'register');
 		}
 	}
 	
@@ -39,7 +39,6 @@ abstract class Common extends \Common {
 		{
 			// no, user not logged in
 			$uri = Uri::segments();
-			//\Debug::dump($uri);
 			
 			if($uri === array('auth', 'login'))
 			{
@@ -75,16 +74,11 @@ abstract class Common extends \Common {
 					
 				}
 			}
-			else
-			{
-				// we are neighter logged in nor on login page
-				Response::redirect('auth/login');
-			}
 		}
 		else
 		{
 			// already logged in
-			$this->user = $this->set_user(Sentry::user);
+			static::set_user(Sentry::user());
 							
 	        // the user is now logged in - do your own logic
 	        if(static::check_permission())
