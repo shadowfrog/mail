@@ -3,6 +3,10 @@
 abstract class Common extends Controller_Hybrid {
 	
 	/**
+	 * current theme
+	 */
+	private static $theme = '';
+	/**
 	 * Use a twig template
 	 */
 	public $template = 'template.twig';
@@ -22,17 +26,45 @@ abstract class Common extends Controller_Hybrid {
 	 */
 	private static $user = false;
 	
+	
 	public function before()
 	{
 		parent::before();
+		$this->theme = \Theme::instance();
+		$this->theme->set_template($this->template);
+		
 	}
 	
 	public function after($response)
 	{
+		$this->template->set('css', $this->css(), false);
+		$this->template->set('js', $this->css(), false);
 		$this->template->set('title', self::$title);
 		$this->template->set('sections', self::$sections, false);
 		
 		return parent::after($response);
+	}
+	
+	/**
+	 * all css files of the theme
+	 */
+	public function css()
+	{
+		$css = array('normalize.css');
+		$this->theme->asset->css($css, array(), 'css');
+		
+		return $this->theme->asset->render('css');
+	}
+	
+	/**
+	 * all js files of the theme
+	 */
+	public function js()
+	{
+		$js = array();
+		$this->theme->asset->js($js, array(), 'js');
+		
+		return $this->theme->asset->render('js');
 	}
 	
 	/**
