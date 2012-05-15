@@ -9,8 +9,10 @@ desktop.ini
 .tmpoj
 fuel/app/logs/*/*/*
 fuel/app/cache/*/*
+fuel/app/config/*/*
 build
 nbproject/
 .idea
 
+/fuel/app/config/*/db.php
 /fuel/app/config/crypt.php

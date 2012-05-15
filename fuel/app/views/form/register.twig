@@ -1,5 +1,11 @@
-<form action="" method="post">
-	<input type="text" name="email" placeholder="E-Mail"/>
-	<input type="password" name="password" placeholder="Passwort"/>
-	<input type="submit" value="Registrieren"/>
+<form action="/auth/register.html" method="post">
+	<ul>
+		<li>
+			<input type="text" name="firstname" placeholder="Vorname"/>
+			<input type="text" name="lastname" placeholder="Nachname"/>
+		</li>
+		<li><input type="text" name="email" placeholder="E-Mail"/></li>
+		<li><input type="password" name="password" placeholder="Passwort"/></li>
+		<li><input type="submit" value="Melde dich an"/></li>
+	</ul>
 </form>
